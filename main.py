@@ -20,8 +20,13 @@ bot = commands.Bot(
 )
 
 if __name__ == '__main__':
-    log.info("Starting bot...")
-    token = os.getenv("BOT_TOKEN")
+    log.info('Starting bot...')
+    cogs = [file.stem for file in Path('cogs').glob('**/*.py') if not file.name.startswith('__')]
+    log.info(f'Loading {len(cogs)} cogs...')
+
+    for cog in cogs:
+        bot.load_extension(f'cogs.{cog}')
+        log.info(f'Loaded cog {cog}')
+
+    token = os.getenv('BOT_TOKEN')
     bot.run(token)
-
-
