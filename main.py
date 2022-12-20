@@ -1,5 +1,6 @@
 import logging
 import os
+from pathlib import Path
 
 import discord
 from discord.ext import commands
@@ -15,7 +16,7 @@ bot = commands.Bot(
     command_prefix="!",
     intents=discord.Intents.default(),
     activity=discord.Game(name="!help"),
-    sync_commands=False,
+    sync_commands=True,
     delete_not_existing_commands=True
 )
 
